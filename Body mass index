@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>BMI Calculator</h1>
+  <form>
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" required>
+    <label for="height">Height (meters):</label>
+    <input type="number" id="height" step="0.1" required>
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <p id="result"></p>
+  </form>
+
+  <script>
+function calculateBMI() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+
+      if (isNaN(weight) || isNaN(height)) {
+        document.getElementById("result").innerHTML = "Invalid input";
+        return;
+      }
+
+      const bmi = weight / (height * height);
+      const result = `Your BMI is: ${bmi.toFixed(1)}`;
+
+      if (bmi < 18.5) {
+        result += " (Underweight)";
+      } else if (bmi < 25) {
+        result += " (Normal)";
+      } else if (bmi < 30) {
+        result += " (Overweight)";
+      } else {
+        result += " (Obese)";
+      }
+  document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</body>
+</html>
+
